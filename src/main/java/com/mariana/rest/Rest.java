@@ -12,9 +12,14 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+
+import com.mariana.service.SearchService;
+
 //main Path
 @Path("/search_information")
 public class Rest {
+	
+	private SearchService SearchService;
 	//search a product  by known code
 	@GET
 	@Path("/product/{code}")
@@ -25,13 +30,13 @@ public class Rest {
 			return Response.ok().entity(product).build();
 
 		} catch (Exception e) {
-			return Response.status(500).entity(e).build();
+			return Response.status(500).entity("HOLA").build();
 		}
 	}
 	//search Products by column
 	@GET
 	//word=column  code=variant to search
-	@Path("/{word}/{code}")
+	@Path("/search/{word}/{code}")
 	@Produces({ MediaType.APPLICATION_JSON })
 	public Response getsearchSpefic(@PathParam("code") String codigo, @PathParam("word") String word) {
 		try {
@@ -57,5 +62,9 @@ public class Rest {
 			return Response.status(500).entity(e).build();
 		}
 	}
-
+	public void setSearchService(
+			SearchService SearchService)
+	{
+		this.SearchService = SearchService;
+	}
 }

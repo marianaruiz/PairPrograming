@@ -9,19 +9,22 @@ package com.mariana.persistence;
 
 import java.util.List;
 
+import org.hibernate.Session;
+import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
+
 import com.mariana.dto.Product;
 
-public class SearchDAO implements SearchInt{
+public class SearchDAO extends HibernateDaoSupport implements SearchInt{
 
 	public Product searchId(int idProduc) {
 		// TODO Auto-generated method stub
-
+		Session session = getSessionFactory().openSession();
 		return null;
 	}
 
-	@Override
 	public List<Product> search(String word, String codigo) {
 		// TODO Auto-generated method stub
+		Session session = getSessionFactory().openSession();
 		return null;
 	}
 

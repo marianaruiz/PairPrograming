@@ -5,11 +5,11 @@
 http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 	<!-- Hibernate session factory Vortex-->
-	<bean id="sessionFactoryClars"
+	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
 
 		<property name="dataSource">
-			<ref bean="dataSourcerClars" />
+			<ref bean="dataSourcer" />
 		</property>
 
 		<property name="hibernateProperties">
@@ -21,8 +21,7 @@ http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 		<property name="mappingResources">
 			<list>
-				<value>/hibernate/UsuarioClars.hbm.xml</value>
-				<value>/hibernate/Customer.hbm.xml</value>		
+				
 			</list>
 		</property>
 

@@ -1,7 +1,61 @@
-<!DOCTYPE web-app PUBLIC
- "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
- "http://java.sun.com/dtd/web-app_2_3.dtd" >
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+  
+   <context-param>
+    <param-name>webAppRootKey</param-name>
+    <param-value>webapp.root.nur</param-value>
+   </context-param>
+  <!-- log4j -->
+  <context-param>
+    <param-name>log4jConfigLocation</param-name>
+    <param-value>classpath:properties/log4j.properties</param-value>
+  </context-param>
+  <listener>
+    <listener-class>
+      org.springframework.web.util.Log4jConfigListener
+    </listener-class>
+  </listener>
+   <!-- rest -->
+  <servlet>
+    <servlet-name>jersey-servlet</servlet-name>
+    <servlet-class>
+      com.sun.jersey.spi.spring.container.servlet.SpringServlet
+    </servlet-class>
+    <init-param>
+      <param-name>com.sun.jersey.config.property.packages</param-name>
+      <param-value>com.mariana.rest</param-value>
+    </init-param>
+    <!-- support for mapping json to java object -->
+    <init-param>
+  	  <param-name>com.sun.jersey.api.json.POJOMappingFeature</param-name>
+	  <param-value>true</param-value>
+  	</init-param>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>jersey-servlet</servlet-name>
+    <url-pattern>/rest/*</url-pattern>
+  </servlet-mapping>	
+  
 
-<web-app>
-  <display-name>Archetype Created Web Application</display-name>
+  
+   <!-- spring -->
+  <context-param>
+	<param-name>contextConfigLocation</param-name>
+	<param-value>/WEB-INF/pair_programing.xml</param-value>
+  </context-param>
+  <listener>
+	<listener-class>
+	  org.springframework.web.context.ContextLoaderListener
+	</listener-class>	
+  </listener>
+  
+  <context-param>
+  	<param-name>spring.profiles.default</param-name>
+  	<param-value>${runMode}</param-value>
+  </context-param>
+
 </web-app>
